@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pratik Kesapure — Computer Engineer</title>
+<meta name="description" content="Portfolio of Pratik Kesapure, Computer Engineer at Yardi, creator of Sangava (ChatZone).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0c1420;
+    --bg-panel: #121d2c;
+    --bg-panel-2: #16223300;
+    --line: #24344a;
+    --line-soft: #1a2636;
+    --blue: #5aa3f0;
+    --blue-dim: #2c5a8a;
+    --amber: #e8a33d;
+    --text: #e8edf5;
+    --text-muted: #8ea0b8;
+    --text-faint: #5a6b83;
+    --mono: 'JetBrains Mono', monospace;
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'Inter', sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--body);
+    line-height:1.6;
+    overflow-x:hidden;
+    background-image:
+      linear-gradient(var(--line-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+    background-size: 48px 48px;
+    background-position: -1px -1px;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 32px;}
+
+  /* Corner registration marks */
+  .reg{position:fixed;width:22px;height:22px;pointer-events:none;z-index:50;opacity:.55;}
+  .reg::before,.reg::after{content:'';position:absolute;background:var(--text-faint);}
+  .reg::before{width:100%;height:1px;top:50%;}
+  .reg::after{width:1px;height:100%;left:50%;}
+  .reg-tl{top:16px;left:16px;} .reg-tr{top:16px;right:16px;}
+  .reg-bl{bottom:16px;left:16px;} .reg-br{bottom:16px;right:16px;}
+
+  /* Nav */
+  header{
+    position:sticky;top:0;z-index:40;
+    background:rgba(12,20,32,.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    max-width:1040px;margin:0 auto;padding:18px 32px;
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .logo{
+    font-family:var(--mono);font-size:14px;color:var(--blue);
+    letter-spacing:.5px;display:flex;align-items:center;gap:8px;
+  }
+  .logo .dot{width:6px;height:6px;background:var(--amber);border-radius:50%;
+    box-shadow:0 0 8px var(--amber);}
+  .navlinks{display:flex;gap:28px;font-family:var(--mono);font-size:12px;
+    text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);}
+  .navlinks a{transition:color .2s;position:relative;}
+  .navlinks a:hover{color:var(--blue);}
+  .navlinks a:focus-visible, a:focus-visible{outline:1px solid var(--blue);outline-offset:3px;}
+
+  /* Hero */
+  .hero{
+    padding:120px 0 90px;position:relative;
+  }
+  .callout{
+    font-family:var(--mono);font-size:12px;color:var(--amber);
+    display:flex;align-items:center;gap:10px;margin-bottom:28px;letter-spacing:.5px;
+  }
+  .callout .seg{width:36px;height:1px;background:var(--amber);opacity:.6;}
+  h1.title{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:clamp(42px, 7vw, 78px);
+    line-height:1.02;
+    letter-spacing:-1.5px;
+    margin-bottom:22px;
+  }
+  h1.title span{color:var(--blue);}
+  .role-line{
+    font-family:var(--mono);
+    font-size:15px;
+    color:var(--text-muted);
+    margin-bottom:36px;
+    display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;
+  }
+  .role-line .tag{
+    border:1px solid var(--line);
+    padding:4px 10px;border-radius:3px;color:var(--text);
+    background:var(--bg-panel);
+  }
+  .hero-desc{
+    max-width:560px;color:var(--text-muted);font-size:16.5px;margin-bottom:44px;
+  }
+  .hero-desc strong{color:var(--text);font-weight:600;}
+  .btn-row{display:flex;gap:16px;flex-wrap:wrap;}
+  .btn{
+    font-family:var(--mono);font-size:13px;padding:13px 24px;border-radius:4px;
+    display:inline-flex;align-items:center;gap:8px;letter-spacing:.3px;
+    transition:transform .15s, border-color .15s, background .15s;border:1px solid transparent;
+  }
+  .btn-primary{background:var(--blue);color:#081120;font-weight:500;}
+  .btn-primary:hover{transform:translateY(-2px);background:#6bb0f5;}
+  .btn-outline{border-color:var(--line);color:var(--text);}
+  .btn-outline:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-2px);}
+
+  /* section shell */
+  section{padding:80px 0;border-top:1px solid var(--line);}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:48px;}
+  .sec-num{font-family:var(--mono);font-size:12px;color:var(--amber);}
+  .sec-title{font-family:var(--display);font-size:30px;font-weight:600;letter-spacing:-.4px;}
+  .sec-line{flex:1;height:1px;background:var(--line);}
+
+  /* About */
+  .about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:56px;}
+  .about-text p{color:var(--text-muted);margin-bottom:18px;font-size:16px;}
+  .about-text strong{color:var(--text);font-weight:600;}
+  .spec-sheet{
+    background:var(--bg-panel);border:1px solid var(--line);border-radius:6px;
+    padding:24px;font-family:var(--mono);font-size:13px;
+  }
+  .spec-row{display:flex;justify-content:space-between;padding:10px 0;
+    border-bottom:1px solid var(--line-soft);color:var(--text-muted);}
+  .spec-row:last-child{border-bottom:none;}
+  .spec-row span:last-child{color:var(--text);text-align:right;}
+
+  /* Experience */
+  .exp-item{
+    display:grid;grid-template-columns:140px 1fr;gap:32px;padding:28px 0;
+    border-bottom:1px solid var(--line-soft);position:relative;
+  }
+  .exp-item:last-child{border-bottom:none;}
+  .exp-period{font-family:var(--mono);font-size:12px;color:var(--text-faint);padding-top:4px;}
+  .exp-period .now{color:var(--amber);}
+  .exp-role{font-family:var(--display);font-size:19px;font-weight:600;margin-bottom:4px;}
+  .exp-org{color:var(--blue);font-size:14px;margin-bottom:12px;font-family:var(--mono);}
+  .exp-desc{color:var(--text-muted);font-size:15px;max-width:600px;}
+  .exp-desc li{margin-left:18px;margin-bottom:6px;}
+
+  /* Project spotlight */
+  .project-card{
+    background:linear-gradient(160deg, var(--bg-panel), #0f1826);
+    border:1px solid var(--line);border-radius:10px;padding:44px;position:relative;overflow:hidden;
+  }
+  .project-card::before{
+    content:'';position:absolute;top:-40%;right:-10%;width:280px;height:280px;
+    background:radial-gradient(circle, var(--blue-dim) 0%, transparent 70%);
+    opacity:.35;pointer-events:none;
+  }
+  .project-tag{font-family:var(--mono);font-size:11px;color:var(--amber);
+    text-transform:uppercase;letter-spacing:1.5px;margin-bottom:14px;display:block;}
+  .project-title{font-family:var(--display);font-size:34px;font-weight:700;margin-bottom:6px;}
+  .project-alias{font-family:var(--mono);color:var(--text-faint);font-size:14px;margin-bottom:22px;}
+  .project-desc{color:var(--text-muted);font-size:16px;max-width:640px;margin-bottom:28px;}
+  .feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 28px;margin-bottom:30px;}
+  .feature{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;color:var(--text-muted);}
+  .feature::before{content:'▸';color:var(--blue);flex-shrink:0;}
+  .project-links{display:flex;gap:14px;flex-wrap:wrap;}
+
+  /* Skills */
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:28px;}
+  .skill-group h4{
+    font-family:var(--mono);font-size:12px;color:var(--blue);text-transform:uppercase;
+    letter-spacing:1px;margin-bottom:16px;
+  }
+  .skill-tags{display:flex;flex-wrap:wrap;gap:8px;}
+  .skill-tags span{
+    font-family:var(--mono);font-size:12.5px;color:var(--text-muted);
+    border:1px solid var(--line);padding:6px 12px;border-radius:4px;
+    transition:border-color .2s, color .2s;
+  }
+  .skill-tags span:hover{border-color:var(--blue);color:var(--text);}
+
+  /* Education */
+  .edu-row{display:flex;justify-content:space-between;align-items:flex-start;
+    padding:22px 0;border-bottom:1px solid var(--line-soft);gap:24px;flex-wrap:wrap;}
+  .edu-degree{font-family:var(--display);font-size:19px;font-weight:600;}
+  .edu-field{font-family:var(--mono);color:var(--blue);font-size:13px;margin-top:4px;}
+  .edu-meta{font-family:var(--mono);font-size:12.5px;color:var(--text-faint);text-align:right;}
+
+  /* Contact */
+  .contact-panel{
+    background:var(--bg-panel);border:1px solid var(--line);border-radius:10px;
+    padding:56px;text-align:center;
+  }
+  .contact-panel h2{font-family:var(--display);font-size:36px;margin-bottom:14px;}
+  .contact-panel p{color:var(--text-muted);max-width:480px;margin:0 auto 34px;}
+  .contact-links{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;}
+  .contact-link{
+    display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:13.5px;
+    border:1px solid var(--line);padding:14px 22px;border-radius:6px;transition:.2s;
+  }
+  .contact-link:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-2px);}
+  .contact-link svg{width:16px;height:16px;fill:currentColor;}
+
+  footer{
+    padding:32px;text-align:center;font-family:var(--mono);font-size:12px;color:var(--text-faint);
+    border-top:1px solid var(--line);
+  }
+
+  @media(max-width:760px){
+    .about-grid{grid-template-columns:1fr;}
+    .exp-item{grid-template-columns:1fr;gap:6px;}
+    .feature-grid{grid-template-columns:1fr;}
+    .navlinks{display:none;}
+    .wrap{padding:0 20px;}
+    .contact-panel{padding:32px 22px;}
+    .project-card{padding:28px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<div class="reg reg-tl"></div>
+<div class="reg reg-tr"></div>
+<div class="reg reg-bl"></div>
+<div class="reg reg-br"></div>
+
+<header>
+  <nav>
+    <div class="logo"><span class="dot"></span>P.KESAPURE</div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#project">Project</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="hero wrap" style="border-top:none;">
+    <div class="callout"><span class="seg"></span>PORTFOLIO — REV. 2026</div>
+    <h1 class="title">Pratik <span>Kesapure</span></h1>
+    <div class="role-line">
+      <span class="tag">Computer Engineer</span>
+      <span class="tag">@ Yardi Systems</span>
+      <span class="tag">Building Sangava / ChatZone</span>
+    </div>
+    <p class="hero-desc">
+      A computer engineering graduate who likes taking systems apart to see how the messages
+      actually move — currently shipping software at <strong>Yardi</strong> by day, and building
+      <strong>Sangava (ChatZone)</strong>, a real-time chat platform, on the side.
+    </p>
+    <div class="btn-row">
+      <a href="#project" class="btn btn-primary">View Sangava →</a>
+      <a href="https://github.com/pratikkesapure" target="_blank" rel="noopener" class="btn btn-outline">GitHub</a>
+      <a href="https://linkedin.com/in/pratikkesapure" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn</a>
+    </div>
+  </section>
+
+  <section id="about" class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2 class="sec-title">About</h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          I'm <strong>Pratik Kesapure</strong>, a Computer Engineer with a degree in
+          Computer Engineering and a habit of turning "how does this actually work" into
+          side projects. My day job is at <strong>Yardi</strong>, where I work as a
+          Computer Engineer on real-world software problems.
+        </p>
+        <p>
+          Outside of work, I'm building <strong>Sangava</strong>, also known as
+          <strong>ChatZone</strong> — a real-time messaging platform I've been designing
+          and developing from the ground up, from the data model to the moment a message
+          lands on someone else's screen.
+        </p>
+        <p>
+          I care about clean architecture, systems that don't fall over under load, and
+          writing code that the next engineer (often future-me) won't curse at.
+        </p>
+      </div>
+      <div class="spec-sheet">
+        <div class="spec-row"><span>Role</span><span>Computer Engineer</span></div>
+        <div class="spec-row"><span>Company</span><span>Yardi Systems</span></div>
+        <div class="spec-row"><span>Degree</span><span>B.E. Computer Engineering</span></div>
+        <div class="spec-row"><span>Focus</span><span>Backend &amp; Real-time Systems</span></div>
+        <div class="spec-row"><span>Current Build</span><span>Sangava / ChatZone</span></div>
+        <div class="spec-row"><span>GitHub</span><span>@pratikkesapure</span></div>
+        <div class="spec-row"><span>LinkedIn</span><span>@pratikkesapure</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2 class="sec-title">Experience</h2>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-period">PRESENT<br><span class="now">● ACTIVE</span></div>
+      <div>
+        <div class="exp-role">Computer Engineer</div>
+        <div class="exp-org">Yardi Systems</div>
+        <ul class="exp-desc">
+          <li>Working as a Computer Engineer, contributing to the design, development,
+            and maintenance of software used across Yardi's product ecosystem.</li>
+          <li>Collaborating with cross-functional teams to build reliable, scalable
+            features and troubleshoot issues across the stack.</li>
+          <li>Applying core computer engineering fundamentals — data structures,
+            databases, and system design — to everyday engineering problems.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-period">ONGOING<br><span class="now">● SIDE PROJECT</span></div>
+      <div>
+        <div class="exp-role">Founder &amp; Developer</div>
+        <div class="exp-org">Sangava (ChatZone)</div>
+        <ul class="exp-desc">
+          <li>Designing and building a real-time chat application end-to-end — from
+            architecture to UI — outside of regular work hours.</li>
+          <li>Owning the full lifecycle: product decisions, backend logic, and the
+            experience of sending and receiving a message instantly.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="project" class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2 class="sec-title">Featured Project</h2>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="project-card">
+      <span class="project-tag">Real-time Messaging Platform</span>
+      <div class="project-title">Sangava</div>
+      <div class="project-alias">// also known as ChatZone</div>
+      <p class="project-desc">
+        Sangava is a real-time chat platform built to make conversations feel instant —
+        one-to-one messaging, group chats, and a clean interface designed to get out of
+        the way of the conversation. It's an ongoing build where I'm the sole engineer
+        behind the product, architecture, and code.
+      </p>
+      <div class="feature-grid">
+        <div class="feature">Real-time one-to-one &amp; group messaging</div>
+        <div class="feature">Focus on low-latency message delivery</div>
+        <div class="feature">Clean, distraction-free chat interface</div>
+        <div class="feature">Built and maintained as an independent project</div>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/pratikkesapure" target="_blank" rel="noopener" class="btn btn-outline">View on GitHub →</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2 class="sec-title">Skills</h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h4>Languages</h4>
+        <div class="skill-tags">
+          <span>Java</span><span>Python</span><span>C++</span><span>JavaScript</span><span>SQL</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Core Foundations</h4>
+        <div class="skill-tags">
+          <span>Data Structures</span><span>Algorithms</span><span>OOP</span>
+          <span>DBMS</span><span>Operating Systems</span><span>Computer Networks</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Web &amp; Backend</h4>
+        <div class="skill-tags">
+          <span>HTML/CSS</span><span>REST APIs</span><span>Real-time Systems</span>
+          <span>Databases</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Tools</h4>
+        <div class="skill-tags">
+          <span>Git</span><span>GitHub</span><span>VS Code</span><span>Linux</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">05</span>
+      <h2 class="sec-title">Education</h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="edu-row">
+      <div>
+        <div class="edu-degree">Bachelor of Engineering — Computer Engineering</div>
+        <div class="edu-field">Core coursework: Data Structures, DBMS, OS, Networks, Software Engineering</div>
+      </div>
+      <div class="edu-meta">DEGREE COMPLETED</div>
+    </div>
+  </section>
+
+  <section id="contact" class="wrap" style="border-bottom:1px solid var(--line);">
+    <div class="contact-panel">
+      <h2>Let's connect</h2>
+      <p>Whether it's about Sangava, engineering at Yardi, or just talking systems and
+        side projects — my inbox on LinkedIn is the fastest way to reach me.</p>
+      <div class="contact-links">
+        <a class="contact-link" href="https://linkedin.com/in/pratikkesapure" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7.5 0h3.8v2.05h.06c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V23h-4v-6.9c0-1.65-.03-3.77-2.3-3.77-2.3 0-2.65 1.8-2.65 3.65V23h-4V8z"/></svg>
+          linkedin.com/in/pratikkesapure
+        </a>
+        <a class="contact-link" href="https://github.com/pratikkesapure" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55v-1.94c-3.2.7-3.87-1.54-3.87-1.54-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18.92-.26 1.91-.39 2.89-.39.98 0 1.97.13 2.89.39 2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.09 0 4.43-2.7 5.41-5.27 5.69.42.36.78 1.08.78 2.17v3.22c0 .3.21.66.79.55C20.71 21.39 24 17.08 24 12 24 5.65 18.85.5 12 .5z"/></svg>
+          github.com/pratikkesapure
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  © 2026 Pratik Kesapure — Built with care, one commit at a time.
+</footer>
+
+</body>
+</html>
